@@ -1,13 +1,15 @@
 import {
   ADD_ARTICLE,
   FOUND_BAD_WORD,
-  CLEAR_BAD_WORD
+  CLEAR_BAD_WORD,
+  DATA_LOADED
 } from "../constants/action-types";
 
 // State di redux berada di Reducers
 const initialState = {
   articles: [{ title: "Learn React", id: 1 }, { title: "Learn Redux", id: 2 }],
-  badWordNotif: ""
+  badWordNotif: "",
+  remoteArticles: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -25,6 +27,10 @@ function rootReducer(state = initialState, action) {
       ...state,
       badWordNotif: ""
     };
+  } else if (action.type === DATA_LOADED) {
+    return Object.assign({}, state, {
+      remoteArticles: state.remoteArticles.concat(action.payload)
+    });
   }
   return state;
 }

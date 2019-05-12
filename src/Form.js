@@ -11,6 +11,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+// menghubungkan state di redux dengan props react component
 const mapStateToProps = state => {
   return {
     badWordNotif: state.badWordNotif
